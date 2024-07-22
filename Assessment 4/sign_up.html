@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Signup Site | Andrew Terbizan </title>
+    <meta charset="UTF-8">
+    <style>
+        .formQuiz {
+            margin-bottom: 20px;
+        }
+        .formQuiz label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .formQuiz .formRadioAge  {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .formButtons input:hover {
+            background-color: rgb(192, 192, 192);
+        }
+        .formButtons input {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .required {
+            color: red;
+        }
+    </style>
+   
+    <link rel="stylesheet" href="CSS/portfolio.css">
+    
+    <link rel="icon" type="image/x-icon" href="Images/my_logo.png">
+   <script>
+    
+        async function signupPost(){
+            const formObjectData = new FormData(document.querySelector("#signingform"));
+            const formDataValue = Object.fromEntries(formObjectData.entries());
+            console.log(formObjectData); 
+
+        if (document.querySelector("#first-name").value === ""){
+            alert("Your first name is required!");
+            return;
+        }
+        if (document.querySelector("#last-name").value === ""){
+            alert("Your last name is required!");
+            return;
+        }
+
+            try {
+                const formWebService = await fetch("https://run.mocky.io/v3/ca79f659-f7e7-4db1-b05f-a7f7b2a83a38",
+                    {
+                        method: "POST", headers: {"content-type":"application/JSON"}, body: JSON.stringify(formDataValue),
+                    }                )
+            } catch (error) {console.error(error);
+                
+            }
+        }
+
+        window.onload = function(){
+            alert("Welcome to my sign-up website! Sign up now for more information.");
+        }
+        
+
+   </script>
+</head>
+
+<body>
+    
+    <div class="form">
+        <h2>Andrew Terbizan's Newsletter for Education work</h2>
+        <form id="signingform">
+            <div class="formQuiz">
+                
+                <label for="first-name">First Name <span class="required">*</span></label>
+                <input type="text" id="first-name" name="first-name" maxlength="60" required>
+            </div>
+            <div class="formQuiz">
+
+                <label for="last-name">Last Name <span class="required">*</span></label>
+                <input type="text" id="last-name" name="last-name" maxlength="60" required>
+            </div>
+            <div class="formQuiz">
+
+                <label for="email-address">Email Address <span class="required">*</span></label>
+                <input type="email" id="email-address" name="email-address" maxlength="60" required>
+            </div>
+            <div class="formQuiz">
+
+                <label>Age Range <span class="required">*</span></label>
+                <div>
+                    <label>
+                        <input type="radio" name="Age1" value="15-25"> 15-25
+                    </label>
+                    <label>
+                        <input type="radio" name="Age2" value="26-35"> 26-35
+                    </label>
+                    <label>
+                        <input type="radio" name="Age3" value="36-45"> 36-45
+                    </label>
+                    <label>
+                        <input type="radio" name="Age4" value="46-55"> 46-55
+                    </label>
+                    <label>
+                        <input type="radio" name="Age5" value="55+"> 55
+                    </label>
+                </div>
+            </div>
+            <div class="formQuiz">
+                <label>Areas of Interest <span class="required">*</span></label>
+                <div class="formCheckboxServices">
+                    <label>
+                        <input type="checkbox" name="services1" value="Service_One"> Teaching Updates
+                    </label>
+                    <label>
+                        <input type="checkbox" name="services2" value="Service_Two"> Schooling Events
+                    </label>
+                    <label>
+                        <input type="checkbox" name="services3" value="Service_Three"> Administration Updates
+                    </label>
+                    <label>
+                        <input type="checkbox" name="services4" value="Service_Four"> Student Stories
+                    </label>
+                    <label>
+                        <input type="checkbox" name="services5" value="Service_Five"> Charity Events
+                    </label>
+                </div>
+            </div>
+            <div class="formQuiz">
+                <label for="commentsandfeedback">Comments and Feedback</label>
+                <textarea id="commentsandfeedback" name="comments and feedback" cols="60" rows="3"></textarea>
+            </div>
+            <div class="formButtons">
+                <input onclick="event.preventDefault(); signupPost();" type="submit" value="Submit">
+                <input type="reset" value="Reset"> 
+            </div>
+        </form>
+    </div>
+</body>
+</html>

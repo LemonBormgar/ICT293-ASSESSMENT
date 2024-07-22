@@ -1,0 +1,6 @@
+header, footer, nav {
+  display: none;
+}
+* {
+  font-size: 110%;
+}
